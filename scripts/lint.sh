@@ -1,2 +1,4 @@
 #!/bin/sh -ex
-poetry run pre-commit run -a
+poetry run isort --profile black src
+poetry run black src
+poetry run ruff src
