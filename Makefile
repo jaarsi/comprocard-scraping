@@ -1,8 +1,8 @@
 setup:
-	@./scripts/setup.sh
+	@scripts/setup.sh
 lint:
-	@./scripts/lint.sh
-scrape:
-	@./scripts/scrape.sh
+	@scripts/lint.sh
+create-report:
+	@PYTHONPATH=src scripts/create-report.sh
 git-push:
-	@./scripts/git-push.sh "$${MSG-wip}"
+	@scripts/git-push.sh "$${MSG-wip}"

@@ -1,4 +1,4 @@
 #!/bin/sh -ex
 poetry lock
-poetry install
+poetry install --no-root
 poetry run pre-commit install

@@ -4,23 +4,19 @@ version = "0.1.0"
 description = ""
 authors = ["Jairo <jairo.araujo.silva@gmail.com>"]
 readme = "README.md"
-packages = [{include = "comprocard_scraping", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 streamlit = "^1.31.1"
 requests = "^2.31.0"
 marshmallow = "^3.20.2"
+pandas = "^2.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.2.0"
 isort = "^5.13.2"
 ruff = "^0.2.2"
 pre-commit = "^3.6.2"
-
-
-[tool.poetry.group.tools.dependencies]
-pandas = "^2.2.0"
 
 [build-system]
 requires = ["poetry-core"]
