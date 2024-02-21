@@ -1,9 +1,8 @@
 setup:
 	@./scripts/setup.sh
 lint:
-	@poetry run pre-commit run -a
+	@./scripts/lint.sh
 scrape:
 	@./scripts/scrape.sh
 git-push:
-	@git add .
-	@git commit -m "wip"
+	@./scripts/git-push.sh "$${MSG-wip}"
