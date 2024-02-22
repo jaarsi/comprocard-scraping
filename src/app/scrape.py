@@ -32,8 +32,7 @@ class PageItemSchema(mm.Schema):
     longitude = mm.fields.String(load_default=None)
 
 
-
-def get_page_results(page: int, results_per_page: int = 12) -> list[Result]:
+def get_page_results(page: int, results_per_page: int) -> list[Result]:
     response = r.post(
         "https://sistemas.comprocard.com.br/GuiaCompras2021/api/Guia/Estabelecimentos",
         headers={"Content-Type": "application/json"},
@@ -49,8 +48,11 @@ def get_page_results(page: int, results_per_page: int = 12) -> list[Result]:
     return [{**_, "_page": page} for _ in results]
 
 
-def get_all_results(concurrency: int = os.cpu_count()) -> list[Result]:
+def get_all_results(
+    concurrency: int = os.cpu_count(), results_per_page: int = 12
+) -> list[Result]:
     print(f"{concurrency=}")
+    print(f"{results_per_page=}")
     q = queue.Queue()
     done = threading.Event()
     results = []
@@ -61,7 +63,7 @@ def get_all_results(concurrency: int = os.cpu_count()) -> list[Result]:
                 page = q.get()
                 print(f"\rRetrieving data from page {page:04d}", end="")
 
-                if data := get_page_results(page):
+                if data := get_page_results(page, results_per_page):
                     results.extend(data)
                 else:
                     done.set()
@@ -87,11 +89,12 @@ def get_all_results(concurrency: int = os.cpu_count()) -> list[Result]:
     for t in consumer_threads:
         t.start()
 
-    producer_thread = threading.Thread(target=producer, daemon=True)
+    producer_thread = threading.Thread(target=producer, daemon=True, name="producer-0")
     producer_thread.start()
     producer_thread.join()
 
     for t in consumer_threads:
         t.join()
 
+    print(f"\nFound {len(results)} results")
     return results
