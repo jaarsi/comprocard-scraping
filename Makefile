@@ -1,5 +1,7 @@
-setup:
-	@scripts/setup.sh
+install-dev:
+	@scripts/install-dev.sh
+install:
+	@scripts/install.sh
 lint:
 	@scripts/lint.sh
 create-report:
