@@ -33,7 +33,7 @@ def main():
 
         results, errors = get_all_results(concurrency, results_per_page, handler)
         print(
-            f"\n\033[0;35mCompleted with {len(results)} results and {len(errors)} errors"
+            f"\n\033[0;35mCompleted with {len(results)} results and {len(errors)} errors\033[0m"
         )
         results = sorted(results, key=lambda item: item["_page"])
         pd.read_json(StringIO(json.dumps(results))).to_csv(f"{filename}.csv")
