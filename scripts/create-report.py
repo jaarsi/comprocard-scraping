@@ -21,17 +21,15 @@ def main():
         args = parse_args()
         filename = f"reports/{datetime.now().isoformat()}"
         print(f"\033[0;35mCreating report on '{filename}'\033[0m")
-        concurrency, results_per_page = (
-            min(args.concurrency, 32),
-            args.results_per_page,
-        )
-        print(f"{concurrency=}")
-        print(f"{results_per_page=}")
+        print(f"{args.concurrency=}")
+        print(f"{args.results_per_page=}")
 
         def handler(page: int):
             print(f"\r\033[0;32mRetrieving data from page {page:04d}\033[0m", end="")
 
-        results, errors = get_all_results(concurrency, results_per_page, handler)
+        results, errors = get_all_results(
+            args.concurrency, args.results_per_page, handler
+        )
         print(
             f"\n\033[0;35mCompleted with {len(results)} results and {len(errors)} errors\033[0m"
         )
