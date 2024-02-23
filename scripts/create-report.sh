@@ -1,2 +1,2 @@
 #!/bin/sh -ex
-python ./scripts/create-report.py $@
+PYTHONPATH=src python ./scripts/create-report.py $@
