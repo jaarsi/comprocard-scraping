@@ -20,7 +20,7 @@ def main():
     try:
         args = parse_args()
         filename = f"reports/{datetime.now().isoformat()}"
-        print(f"Creating report on '{filename}'")
+        print(f"\033[0;35mCreating report on '{filename}'\033[0m")
         concurrency, results_per_page = (
             min(args.concurrency, 32),
             args.results_per_page,
@@ -29,7 +29,7 @@ def main():
         print(f"{results_per_page=}")
 
         def handler(page: int):
-            print(f"\r\033[0;32mRetrieving data from page {page:04d}", end="")
+            print(f"\r\033[0;32mRetrieving data from page {page:04d}\033[0m", end="")
 
         results, errors = get_all_results(concurrency, results_per_page, handler)
         print(
@@ -42,11 +42,9 @@ def main():
             with open(f"{filename}-errors.json", "w") as file:
                 json.dump(errors, file, indent=4)
     except KeyboardInterrupt:
-        print("\n\033[0;31mInterrupted")
+        print("\n\033[0;31mInterrupted\033[0m")
     except Exception as error:
         print(str(error))
-    finally:
-        print("\033[0mEnd")
 
 
 if __name__ == "__main__":
