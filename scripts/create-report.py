@@ -1,4 +1,6 @@
+import argparse
 import json
+import os
 from datetime import datetime
 from io import StringIO
 
@@ -7,11 +9,38 @@ import pandas as pd
 from app.scrape import get_all_results
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--concurrency", default=os.cpu_count(), type=int)
+    parser.add_argument("--results_per_page", default=100, type=int)
+    return parser.parse_args()
+
+
 def main():
-    filename = f"reports/{datetime.now().isoformat()}.csv"
-    print(f"Creating report on '{filename}'")
-    results = json.dumps(get_all_results())
-    pd.read_json(StringIO(results)).to_csv(filename)
+    try:
+        args = parse_args()
+        filename = f"reports/{datetime.now().isoformat()}"
+        print(f"Creating report on '{filename}'")
+        print(f"{args.concurrency=}")
+        print(f"{args.results_per_page=}")
+
+        def handler(page: int):
+            print(f"\r\033[0;32mRetrieving data from page {page:04d}", end="")
+
+        results, errors = get_all_results(
+            args.concurrency, args.results_per_page, handler
+        )
+        print(f"\nCompleted with {len(results)} results and {len(errors)} errors")
+        results = sorted(results, key=lambda item: item["_page"])
+        pd.read_json(StringIO(json.dumps(results))).to_csv(f"{filename}.csv")
+
+        if errors:
+            with open(f"{filename}-errors.json", "w") as file:
+                json.dump(errors, file, indent=4)
+    except KeyboardInterrupt:
+        print("\n\033[0;31mInterrupted")
+    except Exception as error:
+        print(str(error))
 
 
 if __name__ == "__main__":

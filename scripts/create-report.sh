@@ -1,2 +1,2 @@
 #!/bin/sh -ex
-poetry run python ./scripts/create-report.py
+poetry run python ./scripts/create-report.py $@

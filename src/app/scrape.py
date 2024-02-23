@@ -1,7 +1,6 @@
-import os
 import queue
 import threading
-from typing import TypedDict
+from typing import Callable, TypedDict
 
 import marshmallow as mm
 import requests as r
@@ -37,6 +36,7 @@ def get_page_results(page: int, results_per_page: int) -> list[Result]:
         "https://sistemas.comprocard.com.br/GuiaCompras2021/api/Guia/Estabelecimentos",
         headers={"Content-Type": "application/json"},
         json={"pagina": page, "qtdPorPagina": results_per_page},
+        timeout=5,
     )
 
     if not response.ok:
@@ -49,33 +49,34 @@ def get_page_results(page: int, results_per_page: int) -> list[Result]:
 
 
 def get_all_results(
-    concurrency: int = os.cpu_count(), results_per_page: int = 100
-) -> list[Result]:
-    print(f"{concurrency=}")
-    print(f"{results_per_page=}")
+    concurrency: int, results_per_page: int, progress_handler: Callable[[int], None]
+) -> tuple[list[Result], dict[int, str]]:
     q = queue.Queue(concurrency)
     done = threading.Event()
     results = []
+    errors = {}
 
     def consumer():
-        while True:
+        while not done.is_set():
             try:
-                page = q.get()
-                print(f"\rRetrieving data from page {page:04d}", end="")
+                page = q.get(timeout=1)
+                progress_handler(page)
 
                 if not (data := get_page_results(page, results_per_page)):
                     done.set()
                     break
 
                 results.extend(data)
-            except Exception:
+            except queue.Empty:
                 pass
+            except Exception as error:
+                errors[page] = repr(error)
             finally:
                 q.task_done()
 
     def producer():
         page = 1
-        while not done.isSet():
+        while not done.is_set():
             q.put(page)
             page += 1
 
@@ -92,5 +93,4 @@ def get_all_results(
     for t in consumer_threads:
         t.join()
 
-    print(f"\nFound {len(results)} results")
-    return results
+    return results, errors
