@@ -32,7 +32,9 @@ def main():
             print(f"\r\033[0;32mRetrieving data from page {page:04d}", end="")
 
         results, errors = get_all_results(concurrency, results_per_page, handler)
-        print(f"\nCompleted with {len(results)} results and {len(errors)} errors")
+        print(
+            f"\n\033[0;35mCompleted with {len(results)} results and {len(errors)} errors"
+        )
         results = sorted(results, key=lambda item: item["_page"])
         pd.read_json(StringIO(json.dumps(results))).to_csv(f"{filename}.csv")
 
@@ -43,6 +45,8 @@ def main():
         print("\n\033[0;31mInterrupted")
     except Exception as error:
         print(str(error))
+    finally:
+        print("\033[0mEnd")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ create-report:
 	@poetry run scripts/create-report.sh \
 		--concurrency="$${concurrency-8}" \
 		--results_per_page="$${results_per_page-12}"
+create-report-fast:
+	@poetry run scripts/create-report.sh --results_per_page=1000
 git-push: lint
 	@poetry run scripts/git-push.sh "$${MSG-wip}"
 clear-reports:
