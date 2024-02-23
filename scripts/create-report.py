@@ -12,7 +12,7 @@ from app.scrape import get_all_results
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--concurrency", default=os.cpu_count(), type=int)
-    parser.add_argument("--results_per_page", default=100, type=int)
+    parser.add_argument("--results_per_page", default=12, type=int)
     return parser.parse_args()
 
 
@@ -21,15 +21,17 @@ def main():
         args = parse_args()
         filename = f"reports/{datetime.now().isoformat()}"
         print(f"Creating report on '{filename}'")
-        print(f"{args.concurrency=}")
-        print(f"{args.results_per_page=}")
+        concurrency, results_per_page = (
+            min(args.concurrency, 32),
+            args.results_per_page,
+        )
+        print(f"{concurrency=}")
+        print(f"{results_per_page=}")
 
         def handler(page: int):
             print(f"\r\033[0;32mRetrieving data from page {page:04d}", end="")
 
-        results, errors = get_all_results(
-            args.concurrency, args.results_per_page, handler
-        )
+        results, errors = get_all_results(concurrency, results_per_page, handler)
         print(f"\nCompleted with {len(results)} results and {len(errors)} errors")
         results = sorted(results, key=lambda item: item["_page"])
         pd.read_json(StringIO(json.dumps(results))).to_csv(f"{filename}.csv")
