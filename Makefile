@@ -10,7 +10,7 @@ create-report:
 		--results_per_page="$${results_per_page-12}"
 create-report-fast:
 	@PYTHONPATH=src scripts/create-report.sh --results_per_page=1000
-git-push: lint
+git-push: create-requeriments-file lint
 	@scripts/git-push.sh "$${MSG-wip}"
 clear-reports:
 	@rm -rf reports/*.csv reports/*.json
@@ -19,3 +19,5 @@ docker-build:
 docker-run:
 	@docker run -it --rm -v "./reports:/app/reports" comprocard-scraping:latest \
 		results_per_page=1000
+create-requeriments-file:
+	@poetry export > requeriments.txt
