@@ -6,7 +6,7 @@ import marshmallow as mm
 import requests as r
 
 
-class Result(TypedDict):
+class ScrapedPageResult(TypedDict):
     nome: str
     endereco: str
     cidade: str
@@ -19,7 +19,7 @@ class Result(TypedDict):
     _page: int
 
 
-class PageItemSchema(mm.Schema):
+class ScrapedPageResultSchema(mm.Schema):
     nome = mm.fields.String(load_default=None)
     endereco = mm.fields.String(load_default=None)
     cidade = mm.fields.String(load_default=None)
@@ -31,7 +31,7 @@ class PageItemSchema(mm.Schema):
     longitude = mm.fields.String(load_default=None)
 
 
-def get_page_results(page: int, results_per_page: int) -> list[Result]:
+def scrape_page_results(page: int, results_per_page: int) -> list[ScrapedPageResult]:
     response = r.post(
         "https://sistemas.comprocard.com.br/GuiaCompras2021/api/Guia/Estabelecimentos",
         headers={"Content-Type": "application/json"},
@@ -42,15 +42,15 @@ def get_page_results(page: int, results_per_page: int) -> list[Result]:
     if not response.ok:
         raise Exception(response.reason)
 
-    schema = PageItemSchema(many=True, unknown="exclude")
+    schema = ScrapedPageResultSchema(many=True, unknown="exclude")
     data = response.json()
     results = schema.load(data)
     return [{**_, "_page": page} for _ in results]
 
 
-def get_all_results(
+def scrape_all_pages(
     concurrency: int, results_per_page: int, progress_handler: Callable[[int], None]
-) -> tuple[list[Result], dict[int, str]]:
+) -> tuple[list[ScrapedPageResult], dict[int, str]]:
     q = queue.Queue(concurrency)
     done = threading.Event()
     results = []
@@ -62,7 +62,7 @@ def get_all_results(
                 page = q.get(timeout=1)
                 progress_handler(page)
 
-                if not (data := get_page_results(page, results_per_page)):
+                if not (data := scrape_page_results(page, results_per_page)):
                     done.set()
                     break
 
