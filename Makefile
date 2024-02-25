@@ -7,7 +7,7 @@ create-report:
 create-report-fast:
 	@poetry run scripts/create-report.sh --results_per_page=1000
 git-push: create-requirements-file lint
-	@poetry run scripts/git-push.sh '"$${MSG-wip}"'
+	@poetry run scripts/git-push.sh "$${MSG-wip}"
 clear-reports:
 	@rm -rf reports/*.csv reports/*.json
 docker-build: create-requirements-file
