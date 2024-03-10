@@ -1,6 +1,6 @@
 import requests as r
 
-from . import ScrapedPageResult, ScrapedPageResultSchema, ScraperEngine
+from .core import ScrapedPageResult, ScrapedPageResultSchema, ScraperEngine
 
 
 # Comprocard - https://sistemas.comprocard.com.br/GuiaCompras2021/
@@ -130,7 +130,7 @@ class SodexoScraperEngine(ScraperEngine):
 
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        pass
+        return []
 
 
 # Valecard - https://lojavalecard.com.br/rede/
@@ -139,7 +139,7 @@ class ValeCardScraperEngine(ScraperEngine):
 
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        pass
+        return []
 
 
 # VR - https://www.vr.com.br/
@@ -148,7 +148,7 @@ class VRScraperEngine(ScraperEngine):
 
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        pass
+        return []
 
 
 # UpBrasil - https://upbrasil.com/rede-credenciada
@@ -157,4 +157,4 @@ class UpBrasilScraperEngine(ScraperEngine):
 
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        pass
+        return []

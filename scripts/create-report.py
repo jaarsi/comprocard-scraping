@@ -8,7 +8,7 @@ from io import StringIO
 
 import pandas as pd
 
-from app.scrape import ScrapedPageResult, engines, scrape
+from app.scrape import SCRAPER_ENGINES, ScrapedPageResult, scrape
 
 
 def parse_args():
@@ -62,10 +62,10 @@ def main():
         args = parse_args()
         print(f"{args.concurrency=}")
         filename = f"reports/{datetime.now().isoformat()}"
-        print(f"\033[0;35mCreating report on '{filename}'\033[0m")
+        print(f"\033[0;36mCreating report on '{filename}'\033[0m")
         results = []
 
-        for engine in [engines.ComproCardScraperEngine, engines.AleloScraperEngine]:
+        for engine in SCRAPER_ENGINES:
 
             def handler(page: int):
                 print(

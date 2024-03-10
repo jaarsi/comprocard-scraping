@@ -11,8 +11,8 @@ git-push: create-requirements-file lint
 clear-reports:
 	@rm -rf reports/*.csv reports/*.json
 docker-build: create-requirements-file
-	@docker build -t comprocard-scraping:latest .
+	@docker build -t zd-scraping:latest .
 docker-run: docker-build
-	@docker run -it --rm -v "./reports:/app/reports" comprocard-scraping:latest "$${ARGS}"
+	@docker run -it --rm -v "./reports:/app/reports" zd-scraping:latest "$${ARGS}"
 create-requirements-file:
 	@poetry export -q -o requirements.txt
