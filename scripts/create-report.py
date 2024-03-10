@@ -65,7 +65,7 @@ def main():
         print(f"{args.concurrency=}")
         filename = f"reports/{datetime.now().isoformat()}"
         print(f"\033[0;36mCreating report on '{filename}'\033[0m")
-        results = []
+        results: list[ScrapedPageResult] = []
 
         for engine_name, engine in SCRAPER_ENGINES.items():
 
@@ -76,7 +76,7 @@ def main():
                 )
 
             _results, errors = scrape(engine, args.concurrency, handler)
-            print(f" => \033[0;35m{len(_results):06d} results | {len(errors):06d} errors\033[0m")
+            print(f" => \033[0;35m{len(_results):06d} results {len(errors):06d} errors\033[0m")
 
             if _results:
                 with open(f"{filename}-{engine_name}-raw.json", "w") as file:
@@ -89,15 +89,18 @@ def main():
             results.extend(_results)
 
         print("Normalizing data")
-        normalized_results = [normalize_item(_) for _ in results]
+        normalized_results = [normalize_item(_) for _ in results if _["uf"].upper().strip() == "ES"]
         normalized_results = sorted(
-            normalized_results, key=lambda item: (item["_source"], item["_page"])
+            normalized_results, key=lambda item: (item["_source"], item["_page"], item["nome"])
         )
         df = pd.read_json(StringIO(json.dumps(normalized_results)))
         df = df.drop_duplicates()
         df.to_csv(f"{filename}.csv")
         print(
-            f"\033[0;35mCompleted with {len(results)} results ({len(df)} uniques) and {len(errors)} errors\033[0m"
+            f"\033[0;35mCompleted with\n{'total':15s} {'normalized':15s} {'unique':15s} {'errors':15s}"
+        )
+        print(
+            f"\033[0m{len(results):<15d} {len(normalized_results):<15d} {len(df):<15d} {len(errors):<15d}"
         )
     except KeyboardInterrupt:
         print("\n\033[0;31mInterrupted\033[0m")
