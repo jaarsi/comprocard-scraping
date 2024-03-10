@@ -5,8 +5,6 @@ from .core import ScrapedPageResult, ScrapedPageResultSchema, ScraperEngine
 
 # Comprocard - https://sistemas.comprocard.com.br/GuiaCompras2021/
 class ComproCardScraperEngine(ScraperEngine):
-    name = "comprocard"
-
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
         response = r.post(
@@ -22,12 +20,11 @@ class ComproCardScraperEngine(ScraperEngine):
         data = response.json()
         schema = ScrapedPageResultSchema(many=True, unknown="exclude")
         results = schema.load(data)
-        return [{**_, "_page": page, "_source": ComproCardScraperEngine.name} for _ in results]
+        return [{**_, "_page": page, "_source": "comprocard"} for _ in results]
 
 
 # Alelo - https://www.alelo.com.br/onde-aceita
 class AleloScraperEngine(ScraperEngine):
-    name = "alelo"
     reference_points = [
         (-21.17172, -41.38435),
         (-20.40012, -40.93867),
@@ -68,7 +65,7 @@ class AleloScraperEngine(ScraperEngine):
     @staticmethod
     def parse(item: dict, page: int) -> ScrapedPageResult:
         return {
-            "_source": AleloScraperEngine.name,
+            "_source": "alelo",
             "_page": page,
             "atividade": "",
             "bairro": item.get("district"),
@@ -126,8 +123,6 @@ class AleloScraperEngine(ScraperEngine):
 
 # Sodexo - https://www.sodexobeneficios.com.br/sodexo-club/rede-credenciada/
 class SodexoScraperEngine(ScraperEngine):
-    name = "sodexo"
-
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
         return []
@@ -135,8 +130,6 @@ class SodexoScraperEngine(ScraperEngine):
 
 # Valecard - https://lojavalecard.com.br/rede/
 class ValeCardScraperEngine(ScraperEngine):
-    name = "valecard"
-
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
         return []
@@ -144,8 +137,6 @@ class ValeCardScraperEngine(ScraperEngine):
 
 # VR - https://www.vr.com.br/
 class VRScraperEngine(ScraperEngine):
-    name = "vr"
-
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
         return []
@@ -153,8 +144,6 @@ class VRScraperEngine(ScraperEngine):
 
 # UpBrasil - https://upbrasil.com/rede-credenciada
 class UpBrasilScraperEngine(ScraperEngine):
-    name = "upbrasil"
-
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
         return []

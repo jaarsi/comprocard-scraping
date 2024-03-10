@@ -32,8 +32,6 @@ class ScrapedPageResultSchema(mm.Schema):
 
 
 class ScraperEngine(Protocol):
-    name: str
-
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
         pass

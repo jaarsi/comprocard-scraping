@@ -65,22 +65,23 @@ def main():
         print(f"\033[0;36mCreating report on '{filename}'\033[0m")
         results = []
 
-        for engine in SCRAPER_ENGINES:
+        for engine_name, engine in SCRAPER_ENGINES.items():
 
             def handler(page: int):
                 print(
-                    f"\r[{engine.name}] \033[0;32mRetrieving data from page {page:04d}\033[0m",
+                    f"\r[{engine_name:^20s}] \033[0;32mRetrieving data from page {page:04d}\033[0m",
                     end="",
                 )
 
             _results, errors = scrape(engine, args.concurrency, handler)
-            print(f" => \033[0;35m{len(_results)} results | {len(errors)} errors\033[0m")
+            print(f" => \033[0;35m{len(_results):06d} results | {len(errors):06d} errors\033[0m")
 
-            with open(f"{filename}-{engine.name}-raw.json", "w") as file:
-                json.dump(_results, file, indent=4)
+            if _results:
+                with open(f"{filename}-{engine_name}-raw.json", "w") as file:
+                    json.dump(_results, file, indent=4)
 
             if errors:
-                with open(f"{filename}-{engine.name}-errors.json", "w") as file:
+                with open(f"{filename}-{engine_name}-errors.json", "w") as file:
                     json.dump(errors, file, indent=4)
 
             results.extend(_results)
