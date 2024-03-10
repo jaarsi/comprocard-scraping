@@ -8,13 +8,13 @@ from io import StringIO
 
 import pandas as pd
 
-from app.scrape import ScrapedPageResult, scrape_all_pages
+from app.scrape import ScrapedPageResult, engines, scrape
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--concurrency", default=os.cpu_count(), type=int)
-    parser.add_argument("--results_per_page", default=12, type=int)
+    # parser.add_argument("--results_per_page", default=12, type=int)
     return parser.parse_args()
 
 
@@ -23,9 +23,7 @@ def normalize_geopoint(value: str, index: int = 0) -> float | tuple[float, float
         return value
     elif re.match(r"-?\d+\.\d+$", value) is not None:
         return float(value)
-    elif (pattern := re.compile(r"(\d+).(\d+).(\d+\.\d+)")).match(
-        value
-    ):  # 19°33'19.5"S
+    elif (pattern := re.compile(r"(\d+).(\d+).(\d+\.\d+)")).match(value):  # 19°33'19.5"S
         matches = pattern.match(value)
         hours, minutes, seconds = (
             int(matches.group(1)),
@@ -62,32 +60,38 @@ def normalize_item(item: ScrapedPageResult) -> ScrapedPageResult:
 def main():
     try:
         args = parse_args()
+        print(f"{args.concurrency=}")
         filename = f"reports/{datetime.now().isoformat()}"
         print(f"\033[0;35mCreating report on '{filename}'\033[0m")
-        print(f"{args.concurrency=}")
-        print(f"{args.results_per_page=}")
+        results = []
 
-        def handler(page: int):
-            print(f"\r\033[0;32mRetrieving data from page {page:04d}\033[0m", end="")
+        for engine in [engines.ComproCardScraperEngine, engines.AleloScraperEngine]:
 
-        results, errors = scrape_all_pages(
-            args.concurrency, args.results_per_page, handler
-        )
+            def handler(page: int):
+                print(
+                    f"\r[{engine.name}] \033[0;32mRetrieving data from page {page:04d}\033[0m",
+                    end="",
+                )
 
-        with open(f"{filename}-raw.json", "w") as file:
-            json.dump(results, file, indent=4)
+            _results, errors = scrape(engine, args.concurrency, handler)
+            print(f" => \033[0;35m{len(_results)} results | {len(errors)} errors\033[0m")
 
-        if errors:
-            with open(f"{filename}-errors.json", "w") as file:
-                json.dump(errors, file, indent=4)
+            with open(f"{filename}-{engine.name}-raw.json", "w") as file:
+                json.dump(_results, file, indent=4)
 
-        print("\nNormalizing data")
+            if errors:
+                with open(f"{filename}-{engine.name}-errors.json", "w") as file:
+                    json.dump(errors, file, indent=4)
+
+            results.extend(_results)
+
+        print("Normalizing data")
         normalized_results = [normalize_item(_) for _ in results]
-        normalized_results = sorted(normalized_results, key=lambda item: item["_page"])
-        pd.read_json(StringIO(json.dumps(normalized_results))).to_csv(f"{filename}.csv")
-        print(
-            f"\033[0;35mCompleted with {len(results)} results and {len(errors)} errors\033[0m"
+        normalized_results = sorted(
+            normalized_results, key=lambda item: (item["_source"], item["_page"])
         )
+        pd.read_json(StringIO(json.dumps(normalized_results))).to_csv(f"{filename}.csv")
+        print(f"\033[0;35mCompleted with {len(results)} results and {len(errors)} errors\033[0m")
     except KeyboardInterrupt:
         print("\n\033[0;31mInterrupted\033[0m")
     except Exception as error:

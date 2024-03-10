@@ -1,9 +1,8 @@
 import queue
 import threading
-from typing import Callable, TypedDict
+from typing import Callable, Protocol, TypedDict
 
 import marshmallow as mm
-import requests as r
 
 
 class ScrapedPageResult(TypedDict):
@@ -17,6 +16,7 @@ class ScrapedPageResult(TypedDict):
     latitude: float
     longitude: float
     _page: int
+    _source: str
 
 
 class ScrapedPageResultSchema(mm.Schema):
@@ -31,25 +31,18 @@ class ScrapedPageResultSchema(mm.Schema):
     longitude = mm.fields.String(load_default=None)
 
 
-def scrape_page_results(page: int, results_per_page: int) -> list[ScrapedPageResult]:
-    response = r.post(
-        "https://sistemas.comprocard.com.br/GuiaCompras2021/api/Guia/Estabelecimentos",
-        headers={"Content-Type": "application/json"},
-        json={"pagina": page, "qtdPorPagina": results_per_page},
-        timeout=5,
-    )
+class ScraperEngine(Protocol):
+    name: str
 
-    if not response.ok:
-        raise Exception(response.reason)
-
-    schema = ScrapedPageResultSchema(many=True, unknown="exclude")
-    data = response.json()
-    results = schema.load(data)
-    return [{**_, "_page": page} for _ in results]
+    @staticmethod
+    def scrape_page_results(page: int) -> list[ScrapedPageResult]:
+        pass
 
 
-def scrape_all_pages(
-    concurrency: int, results_per_page: int, progress_handler: Callable[[int], None]
+def scrape(
+    engine: ScraperEngine,
+    concurrency: int,
+    progress_handler: Callable[[int], None],
 ) -> tuple[list[ScrapedPageResult], dict[int, str]]:
     q = queue.Queue(concurrency)
     done = threading.Event()
@@ -62,7 +55,7 @@ def scrape_all_pages(
                 page = q.get(timeout=1)
                 progress_handler(page)
 
-                if not (data := scrape_page_results(page, results_per_page)):
+                if not (data := engine.scrape_page_results(page)):
                     done.set()
                     break
 

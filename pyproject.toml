@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "comprocard-scraping"
+name = "zd-scraping"
 version = "0.1.0"
 description = ""
 authors = ["Jairo <jairo.araujo.silva@gmail.com>"]
@@ -10,7 +10,6 @@ python = "^3.10"
 requests = "^2.31.0"
 marshmallow = "^3.20.2"
 pandas = "^2.2.0"
-streamlit = "^1.31.1"
 
 [tool.poetry.group.dev]
 optional = true
@@ -19,7 +18,6 @@ optional = true
 black = "^24.2.0"
 isort = "^5.13.2"
 ruff = "^0.2.2"
-pre-commit = "^3.6.2"
 
 [build-system]
 requires = ["poetry-core"]
