@@ -97,10 +97,10 @@ def main():
         df = df.drop_duplicates()
         df.to_csv(f"{filename}.csv")
         print(
-            f"\033[0;35mCompleted with\n{'total':15s} {'normalized':15s} {'unique':15s} {'errors':15s}"
-        )
-        print(
-            f"\033[0m{len(results):<15d} {len(normalized_results):<15d} {len(df):<15d} {len(errors):<15d}"
+            "\033[0mCompleted with "
+            f"\033[0;35mtotal \033[0m{len(results)} "
+            f"\033[0;35mnormalized \033[0m{len(normalized_results)} "
+            f"\033[0;35munique \033[0m{len(df)}"
         )
     except KeyboardInterrupt:
         print("\n\033[0;31mInterrupted\033[0m")
