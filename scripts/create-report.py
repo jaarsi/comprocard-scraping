@@ -21,6 +21,8 @@ def parse_args():
 def normalize_geopoint(value: str, index: int = 0) -> float | tuple[float, float] | str:
     if not value:
         return value
+    elif isinstance(value, float):
+        return value
     elif re.match(r"-?\d+\.\d+$", value) is not None:
         return float(value)
     elif (pattern := re.compile(r"(\d+).(\d+).(\d+\.\d+)")).match(value):  # 19°33'19.5"S
@@ -91,8 +93,12 @@ def main():
         normalized_results = sorted(
             normalized_results, key=lambda item: (item["_source"], item["_page"])
         )
-        pd.read_json(StringIO(json.dumps(normalized_results))).to_csv(f"{filename}.csv")
-        print(f"\033[0;35mCompleted with {len(results)} results and {len(errors)} errors\033[0m")
+        df = pd.read_json(StringIO(json.dumps(normalized_results)))
+        df = df.drop_duplicates()
+        df.to_csv(f"{filename}.csv")
+        print(
+            f"\033[0;35mCompleted with {len(results)} results ({len(df)} uniques) and {len(errors)} errors\033[0m"
+        )
     except KeyboardInterrupt:
         print("\n\033[0;31mInterrupted\033[0m")
     except Exception as error:

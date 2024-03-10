@@ -1,0 +1,566 @@
+{
+    "responseData": {
+        "took": 8,
+        "timed_out": false,
+        "_shards": {
+            "total": 1,
+            "successful": 1,
+            "skipped": 0,
+            "failed": 0
+        },
+        "hits": {
+            "total": {
+                "value": 1527,
+                "relation": "eq"
+            },
+            "max_score": null,
+            "hits": [
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2904117",
+                    "_score": null,
+                    "_source": {
+                        "code": "2904117",
+                        "fantasyname": "ARMAZEM NATURAL SAO GABRIEL LTDA",
+                        "fantasynamesearch": "armazemnaturalsaogabrielltda",
+                        "socialname": "ARMAZEM NATURAL SAO GABRIEL LTDA",
+                        "webpage": "",
+                        "phones": "27 999196448 ",
+                        "email": "ARMAZEMNATURALSGP@GMAIL.COM",
+                        "addresssearch": "vitoriaes",
+                        "place": "AVENIDA",
+                        "address": "JOAO XXIII",
+                        "number": "120",
+                        "complement": "",
+                        "town": "CENTRO",
+                        "city": "VITORIA",
+                        "state": "ES",
+                        "zipcode": "29780000",
+                        "products": [
+                            {
+                                "code": "526",
+                                "description": "ALIMENTACAO PASS",
+                                "blacklist": false
+                            },
+                            {
+                                "code": "5267",
+                                "description": "ALIMENTACAO PASS NATAL",
+                                "blacklist": false
+                            }
+                        ],
+                        "location": {
+                            "lat": -20.3196644,
+                            "lon": -40.3384748
+                        },
+                        "delivery": {
+                            "deliveries": [],
+                            "whatsappnumber": "",
+                            "deliverywebsite": ""
+                        },
+                        "blacklist": false
+                    },
+                    "sort": [
+                        0.0
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2857564",
+                    "_score": null,
+                    "_source": {\n  "code": "2857564",\n  "fantasyname": "MERCADINHO LIMA",\n  "fantasynamesearch": "mercadinholima",\n  "socialname": "DEBORA CRISTINA SANTOS LIMA 00820824216",\n  "webpage": "",\n  "phones": "91 992032798 ",\n  "email": "DEBORA91CRISTINA@GMAIL.COM",\n  "addresssearch": "acarapa",\n  "place": "RUA",\n  "address": "SEBASTIANA VITORIA",\n  "number": "64",\n  "complement": "CONJ 64",\n  "town": "CENTRO",\n  "city": "ACARA",\n  "state": "PA",\n  "zipcode": "68690000",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3196644,\n    "lon": -40.3384748\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        0.0
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "3166240",
+                    "_score": null,
+                    "_source": {\n  "code": "3166240",\n  "fantasyname": "MERCEARIA SETE",\n  "fantasynamesearch": "merceariasete",\n  "socialname": "CASA DE FRANGO E MERCEARIA SETE LTDA",\n  "webpage": "",\n  "phones": "27 997672376 ",\n  "email": "ERIKAFONTAIN2@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "AVENIDA",\n  "address": "ADVA. REPUBLICA",\n  "number": "352",\n  "complement": "********",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010700",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3196644,\n    "lon": -40.3384748\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false,\n  "benefits": []\n
+                    },
+                    "sort": [
+                        0.0
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "1353633",
+                    "_score": null,
+                    "_source": {\n  "code": "1353633",\n  "fantasyname": "VAREJAO PINGO",\n  "fantasynamesearch": "varejaopingo",\n  "socialname": "RAIMUNDO S. DA SILVA",\n  "webpage": "",\n  "phones": "68 32341307 ",\n  "email": "NFE_BARUERI_AFILIADO@SODEXHOPASS.COM.BR",\n  "addresssearch": "capixabaac",\n  "place": "AVENIDA",\n  "address": "GOV. EDMUNDO PINTO",\n  "number": "",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "CAPIXABA",\n  "state": "AC",\n  "zipcode": "69931000",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3196699,\n    "lon": -40.338479\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        0.759396229364119
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2445980",
+                    "_score": null,
+                    "_source": {\n  "code": "2445980",\n  "fantasyname": "LANCHETERIA VIX",\n  "fantasynamesearch": "lancheteriavix",\n  "socialname": "JOSY RIBEIRO ROSA 12192799780",\n  "webpage": "",\n  "phones": "27 30295445 ",\n  "email": "LANCHETERIAVIX@HOTMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "GAMA ROSA",\n  "number": "174",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015100",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3189217,\n    "lon": -40.3380027\n
+                        },\n  "delivery": {\n    "deliveries": [
+                                {\n      "code": 10,\n      "name": "ownDelivery",\n      "label": "Delivery Próprio",\n      "imagemobile": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/owndelivery-app.png",\n      "imageportal": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/owndelivery.png",\n      "deliveryfoodcard": false,\n      "deliverymealcard": true\n
+                                },
+                                {\n      "code": 11,\n      "name": "ifood",\n      "label": "iFood",\n      "imagemobile": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/ico-ifood-app.png",\n      "imageportal": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/ico-ifood.png",\n      "deliveryfoodcard": false,\n      "deliverymealcard": true\n
+                                }
+                            ],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        96.14122369692917
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2189421",
+                    "_score": null,
+                    "_source": {\n  "code": "2189421",\n  "fantasyname": "MC BAHAMAS HAMBURGUERIA",\n  "fantasynamesearch": "mcbahamashamburgueria",\n  "socialname": "JONIELTON COUTINHO SIMPLICIO 13316643737",\n  "webpage": "",\n  "phones": "27 30147200 ",\n  "email": "JONIELTONCOUTINHOSIMPLICIO@HOTMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "BR GAMA ROSA",\n  "number": "174",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015100",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3189124,\n    "lon": -40.3380036\n
+                        },\n  "delivery": {\n    "deliveries": [
+                                {\n      "code": 10,\n      "name": "ownDelivery",\n      "label": "Delivery Próprio",\n      "imagemobile": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/owndelivery-app.png",\n      "imageportal": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/owndelivery.png",\n      "deliveryfoodcard": false,\n      "deliverymealcard": true\n
+                                },
+                                {\n      "code": 11,\n      "name": "ifood",\n      "label": "iFood",\n      "imagemobile": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/ico-ifood-app.png",\n      "imageportal": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/ico-ifood.png",\n      "deliveryfoodcard": false,\n      "deliverymealcard": true\n
+                                }
+                            ],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        96.98259819903775
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "848841",
+                    "_score": null,
+                    "_source": {\n  "code": "848841",\n  "fantasyname": "PAD. E CONF. TORTELLOTI",\n  "fantasynamesearch": "padeconftortelloti",\n  "socialname": "PADARIA E CONFEITARIA LUPE LTDA",\n  "webpage": "",\n  "phones": "27 32233846 ",\n  "email": "FINANCEIROCASADOPAO@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "PRF BALTAZAR",\n  "number": "31",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015180",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.319373,\n    "lon": -40.337247\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        132.06395134591818
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "3158303",
+                    "_score": null,
+                    "_source": {\n  "code": "3158303",\n  "fantasyname": "SUPERMERCADOS BH",\n  "fantasynamesearch": "supermercadosbh",\n  "socialname": "SUPERMERCADOS BH COMERCIO DE ALIMENTOS S",\n  "webpage": "",\n  "phones": "31 31172600 ",\n  "email": "LEONARDO@SUPERMERCADOSBH.COM.BR",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "THIERS VELLOSO",\n  "number": "30",\n  "complement": "LOJA A",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010570",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5264",\n    "description": "GIFT PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5268",\n    "description": "BRINQUEDO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5254",\n    "description": "PREMIUM PASS CARTAO",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3195751,\n    "lon": -40.339902\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false,\n  "benefits": []\n
+                    },
+                    "sort": [
+                        149.15900051933662
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "766389",
+                    "_score": null,
+                    "_source": {\n  "code": "766389",\n  "fantasyname": "EPA SUPERM.",\n  "fantasynamesearch": "epasuperm",\n  "socialname": "DMA DISTRIBUIDORA S\/A",\n  "webpage": "",\n  "phones": "27 32236899 ",\n  "email": "",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "THIERS VELLOSO",\n  "number": "30",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010570",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3195751,\n    "lon": -40.339902\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false,\n  "benefits": []\n
+                    },
+                    "sort": [
+                        149.15900051933662
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "1768257",
+                    "_score": null,
+                    "_source": {\n  "code": "1768257",\n  "fantasyname": "RESTAURANTE SALADART LTDA - ME",\n  "fantasynamesearch": "restaurantesaladartltdame",\n  "socialname": "RESTAURANTE SALADART LTDA - ME",\n  "webpage": "",\n  "phones": "27 32233755 ",\n  "email": "DILCIVERA@BOL.COM.BR",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "NESTOR GOMES",\n  "number": "237",\n  "complement": "LJ 1",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015150",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3211031,\n    "lon": -40.33839\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        160.2209332419172
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2423247",
+                    "_score": null,
+                    "_source": {\n  "code": "2423247",\n  "fantasyname": "RESTAURANTE D FARIA",\n  "fantasynamesearch": "restaurantedfaria",\n  "socialname": "S B DE FARIA RESTAURANTE",\n  "webpage": "",\n  "phones": "27 979816906 ",\n  "email": "NFE_BARUERI_AFILIADO@SODEXHOPASS.COM.BR",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "DQ. DE CAXIAS",\n  "number": "175",\n  "complement": "PAVMTO2",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010120",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.320735,\n    "lon": -40.337193\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        178.98681788353161
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "1291650",
+                    "_score": null,
+                    "_source": {\n  "code": "1291650",\n  "fantasyname": "ARMAZEM DA NATUREZA",\n  "fantasynamesearch": "armazemdanatureza",\n  "socialname": "ADEIDES MARIA DE SOUZA",\n  "webpage": "",\n  "phones": "27 32226508",\n  "email": "CLIELDO.NASCIMENTO@YAHOO.COM.BR",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "TREZE DE MAIO",\n  "number": "67",\n  "complement": "LOJA 02",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015280",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3192842,\n    "lon": -40.3366351\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        196.43485320783265
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "795079",
+                    "_score": null,
+                    "_source": {\n  "code": "795079",\n  "fantasyname": "PAD. SABOR NATURA",\n  "fantasynamesearch": "padsabornatura",\n  "socialname": "SABOR NATURA ALIMENTOS NATURAIS LTDA",\n  "webpage": "",\n  "phones": "27 33220249",\n  "email": "SABORNATURA@TERRA.COM.BR",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "TREZE DE MAIO",\n  "number": "89",\n  "complement": "LOJA 05 E 2 PAVIMENTO",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015280",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3190116,\n    "lon": -40.3366436\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        204.2726805527911
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "217612",
+                    "_score": null,
+                    "_source": {\n  "code": "217612",\n  "fantasyname": "REST SOL E MAR",\n  "fantasynamesearch": "restsolemar",\n  "socialname": "HOTEL SOL E MAR LTDA",\n  "webpage": "",\n  "phones": "27 32232369",\n  "email": "HOTELSOLEMAR-ES@HOTMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "DNA CAIS DE SAO FRANCISCO",\n  "number": "91",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010680",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.319643,\n    "lon": -40.340437\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        204.63121545863856
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2398148",
+                    "_score": null,
+                    "_source": {\n  "code": "2398148",\n  "fantasyname": "KI DELICIA DE MINAS",\n  "fantasynamesearch": "kideliciademinas",\n  "socialname": "KI DELICIA RESTAURANTE DE MINAS LTDA",\n  "webpage": "",\n  "phones": "27 32221014 ",\n  "email": "ADM@FINANCIALNET.COM.BR",\n  "addresssearch": "vitoriaes",\n  "place": "CAIS",\n  "address": "S DE FRANCISCO",\n  "number": "75",\n  "complement": "LOJA 01",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010680",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.319643,\n    "lon": -40.340437\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        204.63121545863856
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2223260",
+                    "_score": null,
+                    "_source": {\n  "code": "2223260",\n  "fantasyname": "RESTAURANTE RECANTO SAUDAVEL",\n  "fantasynamesearch": "restauranterecantosaudavel",\n  "socialname": "RESTAURANTE MENDES LTDA",\n  "webpage": "",\n  "phones": "27 988694120 ",\n  "email": "M-RAQUEL-GMANDESLOPES@HOTMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "13 DE MAIO",\n  "number": "89",\n  "complement": "PAVMTO 1 PAVMTO 2",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015280",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3190047,\n    "lon": -40.3366332\n
+                        },\n  "delivery": {\n    "deliveries": [
+                                {\n      "code": 11,\n      "name": "ifood",\n      "label": "iFood",\n      "imagemobile": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/ico-ifood-app.png",\n      "imageportal": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/ico-ifood.png",\n      "deliveryfoodcard": false,\n      "deliverymealcard": true\n
+                                }
+                            ],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        205.56577959983207
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "248644",
+                    "_score": null,
+                    "_source": {\n  "code": "248644",\n  "fantasyname": "APETIKE RESTAURANTE",\n  "fantasynamesearch": "apetikerestaurante",\n  "socialname": "APETIKE RESTAURANTE COMERCIO DE ALIMENTA",\n  "webpage": "",\n  "phones": "27 998012203 ",\n  "email": "APETIKERESTAURANTE@HOTMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "GENERAL OSORIO",\n  "number": "196",\n  "complement": "2 PAVIMENTO",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29020000",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3205108,\n    "lon": -40.3402577\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false,\n  "benefits": []\n
+                    },
+                    "sort": [
+                        208.37977140933134
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "1003713",
+                    "_score": null,
+                    "_source": {\n  "code": "1003713",\n  "fantasyname": "KI DELICIA DE MINAS",\n  "fantasynamesearch": "kideliciademinas",\n  "socialname": "RESTAURANTE KI DELICIA LTDA",\n  "webpage": "",\n  "phones": "27 32221014",\n  "email": "RESTAURANTEKIDELICIADEMINAS@HOTMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "CAIS DE SAO FRANCISCO",\n  "number": "69",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010680",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3198309,\n    "lon": -40.3404923\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        211.19019431373215
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2981474",
+                    "_score": null,
+                    "_source": {\n  "code": "2981474",\n  "fantasyname": "CHURRASCARIA KI DELICIA DE MINAS LTDA",\n  "fantasynamesearch": "churrascariakideliciademinasltda",\n  "socialname": "CHURRASCARIA KI DELICIA DE MINAS LTDA",\n  "webpage": "",\n  "phones": "27 32221014 ",\n  "email": "CHURRASCARIAKIDELICIADEMINAS@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "CAIS",\n  "address": "DE SAO FRANCISCO",\n  "number": "69",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010680",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5254",\n    "description": "PREMIUM PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5264",\n    "description": "GIFT PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5268",\n    "description": "BRINQUEDO PASS CARTAO",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3198116,\n    "lon": -40.3405417\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        216.1546853797563
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "1434036",
+                    "_score": null,
+                    "_source": {\n  "code": "1434036",\n  "fantasyname": "JOAO SENA",\n  "fantasynamesearch": "joaosena",\n  "socialname": "RJ RESTAURANTE CHURRASCARIA E PIZZARIA L",\n  "webpage": "",\n  "phones": "27  ",\n  "email": "RESTAURANTESENAGOURMET@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "PRF BALTAZAR",\n  "number": "120",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015180",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3189501,\n    "lon": -40.3365461\n
+                        },\n  "delivery": {\n    "deliveries": [
+                                {\n      "code": 10,\n      "name": "ownDelivery",\n      "label": "Delivery Próprio",\n      "imagemobile": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/owndelivery-app.png",\n      "imageportal": "https:\/\/www.sodexobeneficios.com.br\/lumis-theme\/br\/com\/beneficios\/sodexo\/theme\/sodexo\/img\/owndelivery.png",\n      "deliveryfoodcard": false,\n      "deliverymealcard": true\n
+                                }
+                            ],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        216.2295265406784
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "3095862",
+                    "_score": null,
+                    "_source": {\n  "code": "3095862",\n  "fantasyname": "FARMACIA PRECO BAIXO",\n  "fantasynamesearch": "farmaciaprecobaixo",\n  "socialname": "FPB CENTRO DE VITORIA COMERCIO DE MEDICA",\n  "webpage": "",\n  "phones": "27 21426706 ",\n  "email": "FPBCENTROVITORIA@OUTLOOK.COM",\n  "addresssearch": "vitoriaes",\n  "place": "AVENIDA",\n  "address": "JERONIMO MONTEIRO",\n  "number": "69",\n  "complement": "LOJA 01",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010002",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3217136,\n    "lon": -40.3387939\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false,\n  "benefits": [
+                            {\n    "id": "10",\n    "mcc": "5912",\n    "name": "Saude & Bem-estar"\n
+                            }
+                        ]\n
+                    },
+                    "sort": [
+                        230.2789793956094
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "1533842",
+                    "_score": null,
+                    "_source": {\n  "code": "1533842",\n  "fantasyname": "ILHA COFFEE",\n  "fantasynamesearch": "ilhacoffee",\n  "socialname": "ILHA COFFEE GOURMET EIRELI",\n  "webpage": "",\n  "phones": "27 30293630 ",\n  "email": "RESTAURANTEILHACOFFEE@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "AVENIDA",\n  "address": "CEL JERONIMO MONTEIRO",\n  "number": "124",\n  "complement": "SALA 205",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010002",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3217562,\n    "lon": -40.33823539999\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        233.93625131918716
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "3115689",
+                    "_score": null,
+                    "_source": {\n  "code": "3115689",\n  "fantasyname": "HORTICENTRO KILAO E MERCEARIA",\n  "fantasynamesearch": "horticentrokilaoemercearia",\n  "socialname": "IARA DE SOUSA DANTAS MARTINS 00203361792",\n  "webpage": "",\n  "phones": "27 998515758 ",\n  "email": "IARA127028@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "7 DE SETEMBRO",\n  "number": "207",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015000",\n  "products": [
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3181932,\n    "lon": -40.3367814\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        240.70624505546272
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2217327",
+                    "_score": null,
+                    "_source": {\n  "code": "2217327",\n  "fantasyname": "MARANELLO",\n  "fantasynamesearch": "maranello",\n  "socialname": "MARANELLO CONFEITARIA E CAFETERIA LTDA",\n  "webpage": "",\n  "phones": "27 996031001 ",\n  "email": "ESPACOGLORIABISTRO@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "THIERS VELLOSO",\n  "number": "188",\n  "complement": "LJ 1",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29010570",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTÃ\u0083O",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3187704,\n    "lon": -40.3406968\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        252.1276028833781
+                    ]
+                },
+                {
+                    "_index": "sodexo",
+                    "_type": "_doc",
+                    "_id": "2315272",
+                    "_score": null,
+                    "_source": {\n  "code": "2315272",\n  "fantasyname": "M.R. SOLUCOES",\n  "fantasynamesearch": "mrsolucoes",\n  "socialname": "BISTRO DA SETE LTDA - ME",\n  "webpage": "",\n  "phones": "27 21421039 ",\n  "email": "SR.GAROUPA@GMAIL.COM",\n  "addresssearch": "vitoriaes",\n  "place": "RUA",\n  "address": "7 DE SETEMBRO",\n  "number": "269",\n  "complement": "",\n  "town": "CENTRO",\n  "city": "VITORIA",\n  "state": "ES",\n  "zipcode": "29015000",\n  "products": [
+                            {\n    "code": "516",\n    "description": "REFEICAO PASS CARTAO",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "526",\n    "description": "ALIMENTACAO PASS",\n    "blacklist": false\n
+                            },
+                            {\n    "code": "5267",\n    "description": "ALIMENTACAO PASS NATAL",\n    "blacklist": false\n
+                            }
+                        ],\n  "location": {\n    "lat": -20.3176912,\n    "lon": -40.3371194\n
+                        },\n  "delivery": {\n    "deliveries": [],\n    "whatsappnumber": "",\n    "deliverywebsite": ""\n
+                        },\n  "blacklist": false\n
+                    },
+                    "sort": [
+                        260.98845228436323
+                    ]
+                }
+            ]
+        }
+    },
+    "responseStatus": "success",
+}

@@ -1,3 +1,5 @@
+import json
+
 import requests as r
 
 from .core import ScrapedPageResult, ScrapedPageResultSchema, ScraperEngine
@@ -125,7 +127,51 @@ class AleloScraperEngine(ScraperEngine):
 class SodexoScraperEngine(ScraperEngine):
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        return []
+        return SodexoScraperEngine.fetch_page(page)
+
+    @staticmethod
+    def fetch_page(page: int) -> list[ScrapedPageResult]:
+        response = r.post(
+            "https://www.sodexobeneficios.com.br/sodexo/rest/accreditedNetwork/ws.accreditedNetwork.searchByProductAndAddress",
+            headers={
+                "accept": "application/json, text/javascript, */*; q=0.01",
+                "accept-language": "en-US,en;q=0.9,pt;q=0.8",
+                "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "sec-ch-ua": '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": '"Linux"',
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "x-requested-with": "XMLHttpRequest",
+                "cookie": "visid_incap_2051948=nXryFf2VTKOXxn7WFaBmWaiL32UAAAAAQUIPAAAAAACFaAs+U6U4f1kwRu3zq6ja; lumClientId=2C9F81CD8DCDC31D018DF13991442F6F; nlbi_2051948=EJrkIw3WC16An8Te8iXQLgAAAAA/wYJTKxEiXQiYIlbVmuQf; incap_ses_1616_2051948=P6MCdsATslRC1EiN8i9tFnk67WUAAAAAFy8WrwSna0u3w027dV2IWg==; lumUserName=Guest; lumIsLoggedUser=false; lumUserLocale=pt_BR; JSESSIONID=73DC7AA0E19645C68C432319A3459D48.lumis2; lumUserSessionId=sbHZPZ7cSHO8oRog2W2_6OrTRIRgMqlN; AWSALB=fLFa5WE4EaJY1SaosCJVMUuilxlWz6aPbZm3I57UV/v2EHyS+6IjdMpGMSfHUjUXrgZhlJcUjbq62eirST1LFcyAXpubmEFMpnCc8i/n7ndu5B8G13ae/CDZ0X/A; AWSALBCORS=fLFa5WE4EaJY1SaosCJVMUuilxlWz6aPbZm3I57UV/v2EHyS+6IjdMpGMSfHUjUXrgZhlJcUjbq62eirST1LFcyAXpubmEFMpnCc8i/n7ndu5B8G13ae/CDZ0X/A; nlbi_2051948_2147483392=LhflBdrtJXq7SrXe8iXQLgAAAAB7tVvSdNcd7WnSAvcisu3Z; reese84=3:TYf1U6TBq1oqn8jc8iSEGA==:lJqzrhfSfStxxG4xWV/gsCzUqVpxWS+qaoWnfa+t4jLWNeU2r93uvTF4QpmGnMNoLui+4OcZepNNrmp/qxK0f2BoKmOkWJQcagi/DuPX8BkjocGqJavbzxbGs7vZQZkp8AY8I/euGNx4qK7ZyqR3pOEjLcxmNgZ0av1OMwxs1dZX+Qjdzpp7KMIdnk/Lm1YMjUV407ifeoXbXYkhnFqYvheBYG20vP/Q1qn0oRcwVFmEXdO5u9LqOUb/r1jTKyJl+cv/Cv6p3/R7df4wM7m9fcv315g/KmLjqTjw+v7/VJQ+qUaVSsFtYj5u+GLAlmGLIqenBMsirYC8ZEKSi+MMpehCjwiTSxSOHsw3eL4+2pStyEH+huyVFtKUEPAogwgBNuGSDSZ2NZCx+Lfljjz+/4uStweLbrrwk6ZunS6vgbKt0B7FuDXgI/OboIkoH5YVWZwKLx9EyOynW/AlO6tSoA==:wwCHekObMn9alq0MlsabZVL/6w2bJIPFiCqxIWfMTYE=",
+                "Referer": "https://www.sodexobeneficios.com.br/",
+                "Referrer-Policy": "origin",
+            },
+            data=f"product=526&hasDelivery=false&proximity=250km&lat=-19.61436&lon=-40.49231&startAt={(page-1)*25}",
+        )
+
+        if not response.ok:
+            raise Exception(response.reason)
+
+        json_data = json.loads(response.json()["responseData"])["hits"]["hits"]
+        return [SodexoScraperEngine.parse(_["_source"], page) for _ in json_data]
+
+    @staticmethod
+    def parse(item: dict, page: int) -> ScrapedPageResult:
+        return {
+            "_page": page,
+            "_source": "sodexo",
+            "atividade": "",
+            "bairro": item.get("town"),
+            "cidade": item.get("city"),
+            "endereco": f"{item.get('place')} {item.get('address')} {item.get('number')} {item.get('complement')}",
+            "latitude": item.get("location")["lat"],
+            "longitude": item.get("location")["lon"],
+            "nome": item.get("socialname"),
+            "telefone": item.get("phones"),
+            "uf": item.get("state"),
+        }
 
 
 # Valecard - https://lojavalecard.com.br/rede/
@@ -146,4 +192,53 @@ class VRScraperEngine(ScraperEngine):
 class UpBrasilScraperEngine(ScraperEngine):
     @staticmethod
     def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        return []
+        if page > 1:
+            return []
+
+        return UpBrasilScraperEngine.fetch_page(page)
+
+    @staticmethod
+    def fetch_page(page: int):
+        response = r.post(
+            "https://upbrasil.com/wp-content/themes/betheme/ajax/redecredenciada.php",
+            headers={
+                "accept": "*/*",
+                "accept-language": "en-US,en;q=0.9,pt;q=0.8",
+                "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "sec-ch-ua": '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": '"Linux"',
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "x-requested-with": "XMLHttpRequest",
+                # "cookie": "AdoptVisitorId=GwYwDARgjAnATBAtBALMYiUygDkTFAdjHwIDMzCBmHCQ4FIA; AdoptConsent=N4Ig7gpgRgzglgFwgSQCIgFwgEwHYDGAjAGYAmALAIYC0x2ArAMzXn74AM1AnJQGynUoUbPi6kopehGKUQAGhAB7AA4JkAOwAqlAOYxMAbRABHAJoBpAIIAtABK9kAOUfyQ1RQCEwAL00ANAGVUYlc4MAAnAFUAK3ZIuAFXACljAGsANygAVwBbD2w/VwBxSkcAC3Z2MCtkYph2JJhTUgBhIrLXcgBFAE8IRUVbIr9TEABdBRUEAHkshG09QzGAXyA==; SL_C_23361dd035530_SID={\"59759ca9f1252c0513700b041b9c92687554c3ba\":{\"sessionId\":\"WjQSlfd65ceMhBQOaKVoE\",\"visitorId\":\"X7XgKMD8JglNJ3m89yEoD\"}}",
+                "Referer": "https://upbrasil.com/rede-credenciada",
+                "Referrer-Policy": "strict-origin-when-cross-origin",
+            },
+            data="Latitude=-20.3196644&Longitude=-40.3384748&Radius=250&Produto=24&Cidade=Vit%C3%B3ria&Estado=ES&QRCode=0",
+            timeout=60,
+        )
+
+        if not response.ok:
+            raise Exception(response.reason)
+
+        json_data = response.json().get("data", [])
+        return [UpBrasilScraperEngine.parse(_, page) for _ in json_data]
+
+    @staticmethod
+    def parse(item: dict, page: int) -> ScrapedPageResult:
+        *_, neigh, city, state = item.get("endereco").split(",")
+        return {
+            "_page": page,
+            "_source": "upbrasil",
+            "atividade": "",
+            "bairro": neigh,
+            "cidade": city,
+            "endereco": item.get("endereco"),
+            "latitude": item.get("lat"),
+            "longitude": item.get("lng"),
+            "nome": item.get("nome"),
+            "telefone": item.get("telefone"),
+            "uf": state,
+        }

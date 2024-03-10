@@ -9,7 +9,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "scripts/create-report.py",
-            "args": ["--concurrency", "1"],
+            "args": ["--concurrency", "24"],
             "env": {
                 "PYTHONPATH": "src"
             },
