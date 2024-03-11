@@ -71,12 +71,12 @@ def main():
 
             def handler(page: int):
                 print(
-                    f"\r[{engine_name:^15s}] \033[0;32mRetrieving data from page {page:04d}\033[0m",
+                    f"\r[{engine_name:^15s}] \033[0;32mRetrieving data from page {page: 4d}\033[0m",
                     end="",
                 )
 
             _results, errors = scrape(engine, args.concurrency, handler)
-            print(f" => \033[0;35m{len(_results):06d} results {len(errors):06d} errors\033[0m")
+            print(f" => \033[0;35m{len(_results): 6d} results {len(errors): 6d} errors\033[0m")
 
             if _results:
                 with open(f"{filename}-{engine_name}-raw.json", "w") as file:
@@ -97,10 +97,11 @@ def main():
         df = df.drop_duplicates()
         df.to_csv(f"{filename}.csv")
         print(
-            "\033[0mCompleted with "
-            f"\033[0;35mtotal \033[0m{len(results)} "
-            f"\033[0;35mnormalized \033[0m{len(normalized_results)} "
-            f"\033[0;35munique \033[0m{len(df)}"
+            "\033[0mCompleted with => "
+            f"\033[0;35m[total \033[0m{len(results)}"
+            f"\033[0;35m] [normalized \033[0m{len(normalized_results)}"
+            f"\033[0;35m] [unique \033[0m{len(df)}"
+            "\033[0;35m]"
         )
     except KeyboardInterrupt:
         print("\n\033[0;31mInterrupted\033[0m")
