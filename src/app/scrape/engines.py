@@ -13,7 +13,7 @@ class ComproCardScraperEngine(ScraperEngine):
             "https://sistemas.comprocard.com.br/GuiaCompras2021/api/Guia/Estabelecimentos",
             headers={"Content-Type": "application/json"},
             json={"pagina": page, "qtdPorPagina": 12},
-            timeout=30,
+            timeout=10,
         )
 
         if not response.ok:
@@ -55,6 +55,7 @@ class AleloScraperEngine(ScraperEngine):
                 "Referrer-Policy": "strict-origin-when-cross-origin",
             },
             data="grant_type=client_credentials&client_id=76a775cd-8b2c-4ce8-b7a5-b321c66223f7&client_secret=V2jC1qG2dN2nQ2sK3gE7hR0tI1oO3yT4oF0tA3iI5qK8gD7fX7&scope=acceptance-network",
+            timeout=10,
         )
 
         if not response.ok:
@@ -116,6 +117,7 @@ class AleloScraperEngine(ScraperEngine):
                 "Referer": "https://redeaceitacao.alelo.com.br/",
                 "Referrer-Policy": "strict-origin-when-cross-origin",
             },
+            timeout=10,
         )
 
         if not response.ok:
@@ -151,6 +153,7 @@ class SodexoScraperEngine(ScraperEngine):
                 "Referrer-Policy": "origin",
             },
             data=f"product=526&hasDelivery=false&proximity=250km&lat=-19.61436&lon=-40.49231&startAt={(page-1)*25}",
+            timeout=10,
         )
 
         if not response.ok:
@@ -272,6 +275,7 @@ class TicketScraperEngine(ScraperEngine):
                 "produtos": ["tre"],
                 "qtdPularRegistro": (page - 1) * 300,
             },
+            timeout=10,
         )
 
         if not response.ok:
