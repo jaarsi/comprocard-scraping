@@ -13,8 +13,7 @@ from app.scrape import SCRAPER_ENGINES, ScrapedPageResult, scrape
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--concurrency", default=os.cpu_count() * 4, type=int)
-    # parser.add_argument("--results_per_page", default=12, type=int)
+    parser.add_argument("--concurrency", default=os.cpu_count() * 3, type=int)
     return parser.parse_args()
 
 
@@ -63,7 +62,7 @@ def main():
     try:
         args = parse_args()
         print(f"{args.concurrency=}")
-        filename = f"reports/{datetime.now().isoformat()}"
+        filename = f"{datetime.now().isoformat()}"
         print(f"\033[0;36mCreating report on '{filename}'\033[0m")
         results: list[ScrapedPageResult] = []
 
@@ -79,11 +78,11 @@ def main():
             print(f" => \033[0;35m{len(_results): 6d} results {len(errors): 6d} errors\033[0m")
 
             if _results:
-                with open(f"{filename}-{engine_name}-raw.json", "w") as file:
+                with open(f"reports/raws/{filename}-{engine_name}-raw.json", "w") as file:
                     json.dump(_results, file, indent=4)
 
             if errors:
-                with open(f"{filename}-{engine_name}-errors.json", "w") as file:
+                with open(f"reports/raws/{filename}-{engine_name}-errors.json", "w") as file:
                     json.dump(errors, file, indent=4)
 
             results.extend(_results)
@@ -95,7 +94,7 @@ def main():
         )
         df = pd.read_json(StringIO(json.dumps(normalized_results)))
         df = df.drop_duplicates()
-        df.to_csv(f"{filename}.csv")
+        df.to_csv(f"reports/{filename}.csv")
         print(
             "\033[0mCompleted with => "
             f"\033[0;35m[total \033[0m{len(results)}"

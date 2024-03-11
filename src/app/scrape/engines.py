@@ -240,3 +240,58 @@ class UpBrasilScraperEngine(ScraperEngine):
             "telefone": item.get("telefone"),
             "uf": state,
         }
+
+
+class TicketScraperEngine(ScraperEngine):
+    @staticmethod
+    def scrape_page_results(page: int) -> list[ScrapedPageResult]:
+        response = r.post(
+            "https://api.ticket.com.br/digital_redecredenciada/v2/estabelecimentos",
+            headers={
+                "accept": "application/json, text/plain, */*",
+                "accept-language": "en-US,en;q=0.9,pt;q=0.8",
+                "authorization": "Bearer",
+                "content-type": "application/json",
+                "request-id": "1872c741-664e-449c-b566-a39b84b468f0",
+                "sec-ch-ua": '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": '"Linux"',
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-site",
+                "Referer": "https://www.ticket.com.br/",
+                "Referrer-Policy": "origin-when-cross-origin",
+            },
+            json={
+                "nomeEstabelecimento": None,
+                "categoriaId": None,
+                "raio": 300000,
+                "qtdRegistro": 300,
+                "longitude": -40.3384748,
+                "latitude": -20.3196644,
+                "produtos": ["tre"],
+                "qtdPularRegistro": (page - 1) * 300,
+            },
+        )
+
+        if not response.ok:
+            raise Exception(response.reason)
+
+        json_data = response.json().get("value", [])
+        return [TicketScraperEngine.parse(_, page) for _ in json_data]
+
+    @staticmethod
+    def parse(item: dict, page: int) -> ScrapedPageResult:
+        return {
+            "_page": page,
+            "_source": "ticket",
+            "atividade": "",
+            "bairro": item.get("bairro"),
+            "cidade": item.get("cidade"),
+            "endereco": item.get("endereco"),
+            "latitude": item.get("latitude"),
+            "longitude": item.get("longitude"),
+            "nome": item.get("razaoSocial"),
+            "telefone": item.get("telefone"),
+            "uf": item.get("estado"),
+        }
