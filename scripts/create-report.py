@@ -13,7 +13,7 @@ from app.scrape import SCRAPER_ENGINES, ScrapedPageResult, scrape
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--concurrency", default=os.cpu_count(), type=int)
+    parser.add_argument("--concurrency", default=os.cpu_count() * 4, type=int)
     # parser.add_argument("--results_per_page", default=12, type=int)
     return parser.parse_args()
 

@@ -13,7 +13,7 @@ class ComproCardScraperEngine(ScraperEngine):
             "https://sistemas.comprocard.com.br/GuiaCompras2021/api/Guia/Estabelecimentos",
             headers={"Content-Type": "application/json"},
             json={"pagina": page, "qtdPorPagina": 12},
-            timeout=5,
+            timeout=30,
         )
 
         if not response.ok:
