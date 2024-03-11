@@ -71,7 +71,7 @@ def main():
 
             def handler(page: int):
                 print(
-                    f"\r[{engine_name:^20s}] \033[0;32mRetrieving data from page {page:04d}\033[0m",
+                    f"\r[{engine_name:^15s}] \033[0;32mRetrieving data from page {page:04d}\033[0m",
                     end="",
                 )
 

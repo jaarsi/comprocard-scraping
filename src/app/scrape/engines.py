@@ -2,7 +2,7 @@ import json
 
 import requests as r
 
-from .core import ScrapedPageResult, ScrapedPageResultSchema, ScraperEngine
+from .core import ScrapedPageResult, ScraperEngine
 
 
 # Comprocard - https://sistemas.comprocard.com.br/GuiaCompras2021/
@@ -19,10 +19,12 @@ class ComproCardScraperEngine(ScraperEngine):
         if not response.ok:
             raise Exception(response.reason)
 
-        data = response.json()
-        schema = ScrapedPageResultSchema(many=True, unknown="exclude")
-        results = schema.load(data)
-        return [{**_, "_page": page, "_source": "comprocard"} for _ in results]
+        json_data = response.json()
+        return [ComproCardScraperEngine.parse(_, page) for _ in json_data]
+
+    @staticmethod
+    def parse(item: dict, page: int) -> ScrapedPageResult:
+        return {**item, "_page": page, "_source": "comprocard"}
 
 
 # Alelo - https://www.alelo.com.br/onde-aceita
@@ -166,8 +168,8 @@ class SodexoScraperEngine(ScraperEngine):
             "bairro": item.get("town"),
             "cidade": item.get("city"),
             "endereco": f"{item.get('place')} {item.get('address')} {item.get('number')} {item.get('complement')}",
-            "latitude": item.get("location")["lat"],
-            "longitude": item.get("location")["lon"],
+            "latitude": str(item.get("location")["lat"]),
+            "longitude": str(item.get("location")["lon"]),
             "nome": item.get("socialname"),
             "telefone": item.get("phones"),
             "uf": item.get("state"),
@@ -195,10 +197,6 @@ class UpBrasilScraperEngine(ScraperEngine):
         if page > 1:
             return []
 
-        return UpBrasilScraperEngine.fetch_page(page)
-
-    @staticmethod
-    def fetch_page(page: int):
         response = r.post(
             "https://upbrasil.com/wp-content/themes/betheme/ajax/redecredenciada.php",
             headers={
@@ -236,8 +234,8 @@ class UpBrasilScraperEngine(ScraperEngine):
             "bairro": neigh,
             "cidade": city,
             "endereco": item.get("endereco"),
-            "latitude": item.get("lat"),
-            "longitude": item.get("lng"),
+            "latitude": str(item.get("lat")),
+            "longitude": str(item.get("lng")),
             "nome": item.get("nome"),
             "telefone": item.get("telefone"),
             "uf": state,

@@ -2,10 +2,10 @@ import queue
 import threading
 from typing import Callable, Protocol, TypedDict
 
-import marshmallow as mm
-
 
 class ScrapedPageResult(TypedDict):
+    _source: str
+    _page: int
     nome: str
     endereco: str
     cidade: str
@@ -15,20 +15,6 @@ class ScrapedPageResult(TypedDict):
     telefone: str
     latitude: float
     longitude: float
-    _page: int
-    _source: str
-
-
-class ScrapedPageResultSchema(mm.Schema):
-    nome = mm.fields.String(load_default=None)
-    endereco = mm.fields.String(load_default=None)
-    cidade = mm.fields.String(load_default=None)
-    uf = mm.fields.String(load_default=None)
-    bairro = mm.fields.String(load_default=None)
-    atividade = mm.fields.String(load_default=None)
-    telefone = mm.fields.String(load_default=None)
-    latitude = mm.fields.String(load_default=None)
-    longitude = mm.fields.String(load_default=None)
 
 
 class ScraperEngine(Protocol):
@@ -44,7 +30,7 @@ def scrape(
 ) -> tuple[list[ScrapedPageResult], dict[int, str]]:
     q = queue.Queue(concurrency)
     done = threading.Event()
-    results = []
+    results: list[ScrapedPageResult] = []
     errors = {}
 
     def consumer():
