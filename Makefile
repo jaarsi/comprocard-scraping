@@ -8,9 +8,6 @@ git-push: create-requirements-file lint
 	@git add .
 	@git commit -m wip
 	@git push
-git-wip: lint
-	@git add .
-	@git commit -m wip
 clear-reports:
 	@rm -rf reports/*.csv reports/*.json
 docker-build: create-requirements-file
