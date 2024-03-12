@@ -1,5 +1,6 @@
 setup:
-	@scripts/setup.sh
+	@poetry lock
+	@poetry install --no-root --with dev
 lint:
 	@poetry run scripts/lint.sh
 create-report:
