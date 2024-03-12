@@ -2,7 +2,7 @@ import json
 
 import requests as r
 
-from .core import ScrapedPageResult, ScraperEngine
+from .types import ScrapedPageResult, ScraperEngine
 
 
 # Comprocard - https://sistemas.comprocard.com.br/GuiaCompras2021/

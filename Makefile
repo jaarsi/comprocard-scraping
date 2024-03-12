@@ -8,6 +8,9 @@ git-push: create-requirements-file lint
 	@git add .
 	@git commit -m wip
 	@git push
+git-wip: lint
+	@git add .
+	@git commit -m wip
 clear-reports:
 	@rm -rf reports/*.csv reports/*.json
 docker-build: create-requirements-file
@@ -16,3 +19,7 @@ docker-run: docker-build
 	@docker run -it --rm -v "./reports:/app/reports" zd-scraping:latest "$${ARGS}"
 create-requirements-file:
 	@poetry export -q -o requirements.txt
+start-redis:
+	@docker run --rm -p 6379:6379 redis
+start-worker:
+	@poetry run scripts/start-worker.sh

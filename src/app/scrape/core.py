@@ -1,73 +1,51 @@
-import queue
-import threading
-from typing import Callable, Protocol, TypedDict
+from typing import Callable
+
+import rq
+from redis import Redis
+
+from . import engines, types
+
+redis = Redis()
+queue = rq.Queue(connection=redis)
+
+SCRAPER_ENGINES: dict[str, types.ScraperEngine] = {
+    "comprocard": engines.ComproCardScraperEngine,
+    "alelo": engines.AleloScraperEngine,
+    "sodexo": engines.SodexoScraperEngine,
+    "upbrasil": engines.UpBrasilScraperEngine,
+    "ticket": engines.TicketScraperEngine,
+}
 
 
-class ScrapedPageResult(TypedDict):
-    _source: str
-    _page: int
-    nome: str
-    endereco: str
-    cidade: str
-    uf: str
-    bairro: str
-    atividade: str
-    telefone: str
-    latitude: float
-    longitude: float
+def worker(engine: types.ScraperEngine, page: int):
+    if not (result := engine.scrape_page_results(page)):
+        raise Exception("Empty Response")
+    return result
 
 
-class ScraperEngine(Protocol):
-    @staticmethod
-    def scrape_page_results(page: int) -> list[ScrapedPageResult]:
-        pass
+def on_success(job, connection, result, *args, **kwargs):
+    pass
 
 
-def scrape(
-    engine: ScraperEngine,
-    concurrency: int,
-    progress_handler: Callable[[int], None],
-) -> tuple[list[ScrapedPageResult], dict[int, str]]:
-    q = queue.Queue(concurrency)
-    done = threading.Event()
-    results: list[ScrapedPageResult] = []
-    errors = {}
+def on_failure(job, connection, type, value, traceback):
+    pass
 
-    def consumer():
-        while not done.is_set():
-            try:
-                page = q.get(timeout=1)
-                progress_handler(page)
 
-                if not (data := engine.scrape_page_results(page)):
-                    done.set()
-                    break
+def _scrape(
+    engine_name: str,
+    engine: types.ScraperEngine,
+    on_page_handler: Callable[[str, int], None],
+) -> tuple[list[types.ScrapedPageResult], dict[int, str]]:
+    job = queue.enqueue(
+        worker, engine, 1, on_success=rq.Callback(on_success), on_failure=rq.Callback(on_failure)
+    )
+    return job.latest_result(10)
 
-                results.extend(data)
-            except queue.Empty:
-                pass
-            except Exception as error:
-                errors[page] = repr(error)
-            finally:
-                q.task_done()
 
-    def producer():
-        page = 1
-        while not done.is_set():
-            q.put(page)
-            page += 1
+def scrape(on_page_handler: Callable[[str, int], None] = None) -> list[types.ScrapedPageResult]:
+    results: list[types.ScrapedPageResult] = []
 
-    producer_thread = threading.Thread(target=producer, daemon=True, name="producer-0")
-    producer_thread.start()
-    consumer_threads = [
-        threading.Thread(target=consumer, daemon=True, name=f"consumer-{_}")
-        for _ in range(concurrency)
-    ]
+    for engine_name, engine in SCRAPER_ENGINES.items():
+        results.extend(_scrape(engine_name, engine, on_page_handler))
 
-    for t in consumer_threads:
-        t.start()
-
-    for t in consumer_threads:
-        t.join()
-
-    return results, errors
+    return results
